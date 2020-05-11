@@ -1,4 +1,4 @@
-package = "kong-plugin-oidc-acl"
+package = "kong-plugin-oidc-acl-fix"
 version = "1.0-1"
 local pluginName = "oidc-acl"
 source = {
