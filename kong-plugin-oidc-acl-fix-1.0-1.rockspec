@@ -1,8 +1,8 @@
 package = "kong-plugin-oidc-acl-fix"
-version = "1.0-1"
-local pluginName = "oidc-acl"
+version = "1.0-0"
+local pluginName = "oidc-acl-fix"
 source = {
-  url = "git://github.com/pravin-raha/kong-plugin-oidc-acl",
+  url = "git://github.com/xfroelicher/kong-plugin-oidc-acl-v2",
 }
 description = {
   summary = "A Kong ACL plugin for oidc plugin from pravin-raha/kong-plugin-oidc-acl and fixed",
@@ -15,7 +15,7 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    ["kong.plugins.oidc-acl.handler"] = "handler.lua",
-    ["kong.plugins.oidc-acl.schema"]  = "schema.lua"
+    ["kong.plugins.oidc-acl-fix.handler"] = "handler.lua",
+    ["kong.plugins.oidc-acl-fix.schema"]  = "schema.lua"
   }
 }
