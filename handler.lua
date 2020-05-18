@@ -55,7 +55,6 @@ function get_user_roles()
         if k == 'x-userinfo' then
             local user = cjson.decode(ngx.decode_base64(v))
             local roles = table.concat(user["realm_access"]["roles"],",")
-            ngx.log(ngx.DEBUG, "Roles : ", roles)
             return mysplit(roles, ",")
         end
     end
