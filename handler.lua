@@ -1,8 +1,9 @@
 local responses = kong.response
 local ACL = require("kong.plugins.base_plugin"):extend()
+local cjson = require("cjson")
 
 function ACL:new()
-    ACL.super.new(self, "oidc-acl")
+    ACL.super.new(self, "oidc-acl-fix")
 end
 
 
@@ -51,8 +52,11 @@ end
 function get_user_roles()
     local h = ngx.req.get_headers()
     for k, v in pairs(h) do
-        if k == 'x-oauth-role' then
-            return mysplit(v, ",")
+        if k == 'x-userinfo' then
+            local user = cjson.decode(ngx.decode_base64(v))
+            local roles = table.concat(user["realm_access"]["roles"],",")
+            ngx.log(ngx.DEBUG, "Roles : ", roles)
+            return mysplit(roles, ",")
         end
     end
 
