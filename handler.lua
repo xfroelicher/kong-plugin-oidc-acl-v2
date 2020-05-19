@@ -1,4 +1,3 @@
-local responses = kong.response
 local ACL = require("kong.plugins.base_plugin"):extend()
 local cjson = require("cjson")
 
@@ -16,7 +15,9 @@ function ACL:access(plugin_conf)
     if has_value(whitelist, userroles) then
         return
     else
-        return responses.send_HTTP_FORBIDDEN("You cannot consume this service")
+        ngx.status = 401
+        ngx.say("You cannot consume this service")
+        ngx.exit(ngx.HTTP_UNAUTHORIZED)
     end
 
 end
