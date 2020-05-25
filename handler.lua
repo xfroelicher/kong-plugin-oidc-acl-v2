@@ -2,7 +2,7 @@ local ACL = require("kong.plugins.base_plugin"):extend()
 local cjson = require("cjson")
 
 function ACL:new()
-    ACL.super.new(self, "oidc-acl-fix")
+    ACL.super.new(self, "acl-keycloak")
 end
 
 
